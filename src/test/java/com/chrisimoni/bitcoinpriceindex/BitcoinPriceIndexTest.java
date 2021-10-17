@@ -14,7 +14,7 @@ import com.chrisimoni.bitcoinpriceindex.service.Service;
 public class BitcoinPriceIndexTest {
 	Service serviceStub = new ServiceStub();
 	BitcoinPriceIndex bitcoinPriceIndex = new BitcoinPriceIndex(serviceStub);
-	String code = "usd";
+	final String code = "usd";
 
 	@Test
 	void testCheckCurrencyCodeExist() {
