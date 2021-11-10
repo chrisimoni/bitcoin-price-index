@@ -12,13 +12,13 @@ public class BitcoinPriceIndex {
 	private Service service;
 	Map<JSONObject, JSONObject> dataMap = new HashMap<JSONObject, JSONObject>();
 
-	public BitcoinPriceIndex(Service service) {
+	public BitcoinPriceIndex(Service service, String code) {
 		this.service = service;
-		this.dataMap = getCurrentBitcoinPriceIndexData();
+		this.dataMap = getCurrentBitcoinPriceIndexData(code);
 	}
 	
-	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData() {
-		return service.getCurrentBitcoinPriceIndexData();
+	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData(String code) {
+		return service.getCurrentBitcoinPriceIndexData(code);
 	}
 
 	public boolean checkCurrencyCodeExist(String code) {

@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import com.chrisimoni.bitcoinpriceindex.service.Service;
 
 public class BitcoinPriceIndexTest {
-	Service serviceStub = new ServiceStub();
-	BitcoinPriceIndex bitcoinPriceIndex = new BitcoinPriceIndex(serviceStub);
 	final String code = "usd";
+	Service serviceStub = new ServiceStub();
+	BitcoinPriceIndex bitcoinPriceIndex = new BitcoinPriceIndex(serviceStub, code);
 
 	@Test
 	void testCheckCurrencyCodeExist() {
@@ -23,7 +23,7 @@ public class BitcoinPriceIndexTest {
 
 	@Test
 	void testGetCurrentBitcoinPriceIndexData() {
-		Map<JSONObject, JSONObject> data = bitcoinPriceIndex.getCurrentBitcoinPriceIndexData();
+		Map<JSONObject, JSONObject> data = bitcoinPriceIndex.getCurrentBitcoinPriceIndexData(code);
 		assertEquals(1, data.size());
 	}
 

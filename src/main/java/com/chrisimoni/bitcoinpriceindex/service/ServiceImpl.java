@@ -16,9 +16,9 @@ import kong.unirest.Unirest;
 
 public class ServiceImpl implements Service {
 
-	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData() {
+	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData(String code) {
 		Map<JSONObject, JSONObject> dataMap = new HashMap<JSONObject, JSONObject>();
-		HttpResponse<String> data = Unirest.get("https://api.coindesk.com/v1/bpi/currentprice/eur.json").asString();
+		HttpResponse<String> data = Unirest.get("https://api.coindesk.com/v1/bpi/currentprice/"+code+".json").asString();
 		JSONParser parser = new JSONParser();
 		JSONObject json;
 		try {
@@ -56,7 +56,7 @@ public class ServiceImpl implements Service {
 	}
 
 	public boolean checkCurrencyCodeExist(String code) {
-		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData();
+		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData(code);
 		if (!dataMap.containsKey(code.toUpperCase())) {
 			return false;
 		}
@@ -64,7 +64,7 @@ public class ServiceImpl implements Service {
 	}
 
 	public double getCurrentBitcoinRate(String code) {
-		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData();
+		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData(code);
 		double currentBitcoinRate = Double
 				.parseDouble(dataMap.get(code.toUpperCase()).get("rate_float").toString());
 		return currentBitcoinRate;
