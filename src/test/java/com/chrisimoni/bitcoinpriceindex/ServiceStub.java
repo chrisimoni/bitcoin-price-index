@@ -15,7 +15,7 @@ import com.chrisimoni.bitcoinpriceindex.service.Service;
 
 public class ServiceStub implements Service {
 
-	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData() {
+	public Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData(String code) {
 		Map<JSONObject, JSONObject> dataMap = new HashMap<JSONObject, JSONObject>();
 		JSONParser parser = new JSONParser();
 		String sampleData = "{\"bpi\":{\"USD\":{\"code\":\"USD\",\"rate\":\"60,873.2183\",\"description\":\"United States Dollar\",\"rate_float\":60873.2183}}}";
@@ -41,7 +41,7 @@ public class ServiceStub implements Service {
 	}
 
 	public boolean checkCurrencyCodeExist(String code) {
-		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData();
+		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData(code);
 		if (!dataMap.containsKey(code.toUpperCase())) {
 			return false;
 		}
@@ -49,7 +49,7 @@ public class ServiceStub implements Service {
 	}
 
 	public double getCurrentBitcoinRate(String code) {
-		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData();
+		Map<JSONObject, JSONObject> dataMap = getCurrentBitcoinPriceIndexData(code);
 		double currentBitcoinRate = Double
 				.parseDouble(dataMap.get(code.toUpperCase()).get("rate_float").toString());
 		return currentBitcoinRate;

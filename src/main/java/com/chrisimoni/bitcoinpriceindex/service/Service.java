@@ -6,7 +6,7 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 
 public interface Service {
-	Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData();
+	Map<JSONObject, JSONObject> getCurrentBitcoinPriceIndexData(String code);
 	List<Double> getHighestAndLowestBitcoinRateInLast30Days(String code);
 	boolean checkCurrencyCodeExist(String code);
 	double getCurrentBitcoinRate(String code);

@@ -8,10 +8,11 @@ import com.chrisimoni.bitcoinpriceindex.service.ServiceImpl;
 public class BitcoinPriceIndexDriver {
 
 	public static void main(String[] args) {
-		BitcoinPriceIndex bitcoinPriceIndex = new BitcoinPriceIndex(new ServiceImpl());
 		Scanner in = new Scanner(System.in);
 		System.out.print("Enter a currency code: ");
 		String code = in.nextLine();
+		
+		BitcoinPriceIndex bitcoinPriceIndex = new BitcoinPriceIndex(new ServiceImpl(), code);
 
 		if (!bitcoinPriceIndex.checkCurrencyCodeExist(code)) {
 			System.out.println("The currency code you provided is not supported, try a different one.");
